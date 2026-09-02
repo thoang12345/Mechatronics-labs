@@ -91,10 +91,10 @@ void loop() {
   button_A_state = digitalRead(button_A);
   button_B_state = digitalRead(button_B);
 
-  /*Serial.print("A: ");
+  Serial.print("A: ");
   Serial.print(button_A_state);
   Serial.print("  B: ");
-  Serial.println(button_B_state);*/
+  Serial.println(button_B_state);
 
   unsigned long current_Time = millis();
 
