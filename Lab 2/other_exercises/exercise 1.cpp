@@ -19,15 +19,15 @@ void loop() {
     digitalWrite(2, LOW);
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
-  } else if(resist<25 and resist>=22){
+  } else if(resist<23 and resist>=21){
     digitalWrite(2, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
-  } else if(resist<27 and resist>=25){
+  } else if(resist<24 and resist>=23){
     digitalWrite(2, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(4, LOW);
-  } else if(resist<29 and resist>=27){
+  } else if(resist<27 and resist>=25){
     digitalWrite(2, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(4, HIGH);
