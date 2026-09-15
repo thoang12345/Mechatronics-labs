@@ -37,6 +37,7 @@ void loop() {
     }
 
     if (analogRead(button) >= 1010) {
+        //deactivates the alarm
         alarmActive = false;
         noTone(piezo);
         digitalWrite(led, LOW);
