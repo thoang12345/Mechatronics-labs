@@ -63,11 +63,12 @@ void loop() {
     case 0: // time mode
 
       // if (changeVal == HIGH && lastChange == LOW) { // change button activated
-      potTime = map(analogRead(pot), 0, 1023, 0, 300); // 0-5 minutes
+      potTime = map(analogRead(pot), 0, 1023, 0, 300); // 0-5 minutes, this is the map that sets the time
+      //if you want the time to be larger, we can increase the 300
       countdownTime = potTime;
       // }
 
-      if (startVal == HIGH && lastStart == LOW && countdownTime > 0) {
+      if (startVal == HIGH && lastStart == LOW && countdownTime > 0) { // when the start button is pressed, the timer will start to go down. 
         previousTime = millis();
         mode = 1;
       }
@@ -77,6 +78,7 @@ void loop() {
       if (millis() - previousTime >= 1000) { // checks to see if 1 second has passed
         previousTime = previousTime + 1000;
 
+        //once the countdown reaches 0, it switches to mode 3 (alarm mode)
         if (countdownTime > 0) {
           countdownTime = countdownTime - 1;
         } else {
@@ -85,37 +87,37 @@ void loop() {
         }
       }
 
-      if (startVal == HIGH && lastStart == LOW) { // pauses the clock
+      if (startVal == HIGH && lastStart == LOW) { // pauses the clock if the pause button is pressed 
         mode = 2;
       }
       break;
 
     case 2: // when paused
-      if (startVal == HIGH && lastStart == LOW) { // resume
+      if (startVal == HIGH && lastStart == LOW) { // resume the alarm from where it is 
         previousTime = millis();
         mode = 1;
       }
 
-      if (changeVal == HIGH && lastChange == LOW) { // change time
+      if (changeVal == HIGH && lastChange == LOW) { // change time to the original set time
         mode = 0;
       }
       break;
 
     case 3: // alarming
-      if (beepTime == 0) {
+      if (beepTime == 0) { //beep
         tone(piezo, 2500, 250);
-        
         beepTime = millis();
       }
 
-      if (millis() - beepTime >= 3000) {
+      if (millis() - beepTime >= 3000) { // after 3 seconds from the start of the first beep, it play another beep.
+        // if you want to decrease the beeping interval, you must change this 3000 value to something else.
         tone(piezo, 2500, 250);
         beepTime = millis(); // resets the count
       }
 
       Serial.println("The alarm is on. Please press the alarm button to turn off.");
 
-      if (alarmVal == HIGH && lastAlarm == LOW) {
+      if (alarmVal == HIGH && lastAlarm == LOW) { // if alarm off button pressed
         noTone(piezo);
         countdownTime = 0;
         beepTime = 0;
