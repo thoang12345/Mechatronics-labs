@@ -75,7 +75,7 @@ void loop() {
       break;
 
     case 1: // running mode
-      if (millis() - previousTime >= 1000) { // checks to see if 1 second has passed
+      if (millis() - previousTime >= 1000) { // checks to see if 1 second has passed, this maintains the one second countdown without the use of delay()
         previousTime = previousTime + 1000;
 
         //once the countdown reaches 0, it switches to mode 3 (alarm mode)
