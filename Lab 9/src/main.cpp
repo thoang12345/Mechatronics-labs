@@ -27,11 +27,6 @@ void loop() {
   voltage_1 = pot_1 * (5.0 / 1023.0);
   voltage_2 = pot_2 * (5.0 / 1023.0);
 
-  Serial.print("Raw 1: ");
-  Serial.print(pot_1);
-  Serial.print(", Raw 2: ");
-  Serial.println(pot_2);
-
   Serial.print("Voltage 1: ");
   Serial.print(voltage_1, 3);
   Serial.print(" V, Voltage 2: ");
@@ -42,12 +37,12 @@ void loop() {
   if (voltage_2 > 1.6027 * voltage_1 - 1.4846) {
     digitalWrite(green_led, LOW);
     digitalWrite(red_led, HIGH);
-    Serial.println("Red LED");
+    Serial.println("Green LED");
   } else {
     digitalWrite(green_led, HIGH);
     digitalWrite(red_led, LOW);
-    Serial.println("Green LED");
+    Serial.println("Red LED");
   }
 
-  delay(100);
+  delay(500);
 }
