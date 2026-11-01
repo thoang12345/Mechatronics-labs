@@ -34,6 +34,7 @@ void loop() {
   Serial.print(" V | ");
 
   // voltage_1: x-axis; voltage_2: y-axis
+  // slope and such found by the MatLAB script.
   if (voltage_2 > 1.6027 * voltage_1 - 1.4846) {
     digitalWrite(green_led, LOW);
     digitalWrite(red_led, HIGH);
